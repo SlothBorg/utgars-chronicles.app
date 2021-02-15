@@ -1,17 +1,10 @@
 <template>
     <div class="container mx-auto px-4">
-        <CreateHistoryModal v-if="showModal" @close="showModal = false" />
-
         <section class="mb-8">
             <div class="flex justify-between items-center mb-4">
                 <h2 class="font-bold text-xl">
                     Histories
                 </h2>
-
-                <button
-                    @click="showModal = true"
-                    class="px-4 py-2 bg-indigo-700 text-white rounded"
-                >Start new history</button>
             </div>
 
             <ul class="history-cards">
@@ -38,14 +31,13 @@
 <script>
 import Layout from './Layouts/Layout';
 import HistoryCard from '../components/HistoryCard';
-import CreateHistoryModal from "../components/Modal/CreateHistoryModal";
 
 export default {
     name: 'HomePage',
 
     metaInfo() {
         return {
-            title: 'Utgar\'s Chronicles – Play Microscope Online'
+            title: 'Play Microscope Online'
         };
     },
 
@@ -54,7 +46,6 @@ export default {
     props: ['histories', 'games'],
 
     components: {
-        CreateHistoryModal,
         HistoryCard,
     },
 

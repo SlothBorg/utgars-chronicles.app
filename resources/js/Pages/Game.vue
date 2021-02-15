@@ -11,7 +11,7 @@ export default {
 
     metaInfo() {
         return {
-            title: `${this.$page.props.history.name} – Utgar\'s Chronicles`
+            title: `${this.$page.props.history.name} – Microscope`
         };
     },
 

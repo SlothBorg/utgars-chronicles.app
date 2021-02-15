@@ -1,89 +1,38 @@
 <template>
-    <div class="w-full items-center flex-grow sm:flex sm:w-auto">
-        <div class="flex items-center flex-grow">
-            <InertiaLink
-                :href="$route('home')"
-                class="text-indigo-100 py-4 sm:py-6 flex items-center hover:bg-indigo-700 sm:px-4"
-            >
-                Dashboard
-            </InertiaLink>
+    <div class="w-full flex-grow sm:flex sm:w-auto">
+        <CreateHistoryModal v-if="showModal" @close="showModal = false" />
+        <div class="sm:flex justify-start relative">
+            <button
+                @click="showModal = true"
+                class="sm:px-8 py-4 sm:py-2 bg-indigo-800 text-gray-100 underline hover:bg-indigo-500 hover:text-gray-900 hover:underline"
+            >Start new history</button>
         </div>
+        <div class="sm:flex justify-end relative">
+            <InertiaLink
+                :href="$route('profile')"
+                class="sm:px-8 py-4 sm:py-2 sm:text-sm text-gray-100 hover:bg-gray-100 hover:text-gray-800"
+                @click="dropdownOpen = false"
+            >Profile</InertiaLink>
 
-        <div class="sm:flex items-center relative">
-            <ul class="sm:mr-4">
-                <li class="sm:px-4 hover:bg-indigo-700">
-                    <FeedbackModal />
-                </li>
-            </ul>
-
-            <div class="flex items-center">
-                <Gravatar
-                    :email="$page.props.auth.user.email"
-                    :size="30"
-                    class="mr-2 rounded-full border-2 border-indigo-500"
-                />
-
-                <div class="relative py-4 sm:py-6">
-                    <button
-                        @click="dropdownOpen = !dropdownOpen"
-                        class="flex items-center"
-                    >
-                        <span class="text-indigo-400">Hello,&nbsp;</span>
-                        <span class="font-bold text-indigo-100 mr-1">{{
-                            $page.props.auth.user.name
-                        }}</span>
-                        <Icon
-                            name="chevron-down"
-                            class="h-4 w-4 fill-current text-gray-200"
-                        />
-                    </button>
-                </div>
-            </div>
-
-            <div
-                v-if="dropdownOpen"
-                v-click-outside="() => (dropdownOpen = false)"
-                class="border-t border-indigo-100 sm:absolute sm:bg-white sm:border sm:border-gray-300 sm:shadow-lg sm:right-0 sm:rounded sm:flex sm:flex-col sm:z-10"
-                style="top: 100%"
-            >
-                <InertiaLink
-                    :href="$route('profile')"
-                    class="sm:px-8 py-4 sm:py-2 sm:text-sm text-indigo-100 sm:text-gray-800 block hover:bg-gray-100 inline-flex items-center"
-                    @click="dropdownOpen = false"
-                >
-                    <Icon
-                        name="user"
-                        class="fill-current h-4 w-4 sm:h-3 sm:w-3 text-indigo-300 sm:text-gray-600 mr-2"
-                    />
-                    Profile
-                </InertiaLink>
-
-                <InertiaLink
-                    as="button"
-                    method="POST"
-                    :href="$route('logout')"
-                    class="sm:text-sm text-indigo-100 sm:text-indigo-600 w-full sm:px-8 py-4 sm:py-2 text-left hover:bg-gray-100"
-                    >Logout</InertiaLink
-                >
-            </div>
+            <InertiaLink
+                as="button"
+                method="POST"
+                :href="$route('logout')"
+                class="sm:text-sm w-full sm:px-8 py-4 sm:py-2 text-gray-100 hover:bg-gray-100 hover:text-gray-800"
+            >Logout</InertiaLink>
         </div>
     </div>
 </template>
 
 <script>
-import Gravatar from "vue-gravatar";
 import vClickOutside from "v-click-outside";
-
-import Icon from "./Icon";
-import FeedbackModal from "./Modal/FeedbackModal";
+import CreateHistoryModal from "../components/Modal/CreateHistoryModal";
 
 export default {
     name: "UserNavigation",
 
     components: {
-        FeedbackModal,
-        Icon,
-        Gravatar
+        CreateHistoryModal,
     },
 
     directives: {
@@ -100,7 +49,8 @@ export default {
 
     data() {
         return {
-            dropdownOpen: false
+            dropdownOpen: false,
+            showModal: false,
         };
     }
 };

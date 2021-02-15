@@ -8,15 +8,15 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
     <script src="{{ mix('js/app.js') }}" defer></script>
 
     <title>{{ config('app.name') }}</title>
 
-    <script src="https://cdn.usefathom.com/script.js" data-site="RHQXBEGX" included-domains="utgars-chronicles.app" defer></script>
     @routes
 </head>
-<body class="flex flex-col h-full antialiased">
-    @inertia
+<body class="h-auto page-header">
+    <div class="flex flex-col">
+        @inertia
+    </div>
 </body>
 </html>
