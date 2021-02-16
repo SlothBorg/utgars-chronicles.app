@@ -1,7 +1,7 @@
 <template>
     <button
         type="submit"
-        class="text-white w-full rounded py-2 px-4"
+        class="bg-grey-800 text-grey-200 w-full rounded py-2 px-4"
         :class="{ 'bg-grey-400 cursor-not-allowed': loading, 'bg-grey-700 ': !loading }"
         :disabled="loading"
     >

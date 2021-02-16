@@ -3,7 +3,12 @@
         <form @submit.prevent="submit">
             <div class="mb-4">
                 <label for="name" class="label">Name</label>
-                <textarea type="text" class="input" id="name" ref="input" v-model="form.name" rows="5" required></textarea>
+                <input type="text" id="name" class="input" v-model="form.name">
+            </div>
+
+            <div class="mb-4">
+                <label for="name" class="label">Description</label>
+                <textarea id="description" rows="4" class="input" v-model="form.description"></textarea>
             </div>
 
             <div class="mb-4">
@@ -52,6 +57,7 @@ export default {
             loading: false,
             form: {
                 name: null,
+                description: null,
                 type: 'dark',
                 position: this.position,
             },

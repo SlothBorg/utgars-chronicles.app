@@ -4,7 +4,12 @@
             <form @submit.prevent="submit">
                 <div class="mb-4">
                     <label for="name" class="label" ref="input">Name</label>
-                    <textarea type="text" class="input" id="name" v-model="form.name" rows="5" required></textarea>
+                    <input type="text" class="input" id="name" v-model="form.name" required>
+                </div>
+
+                <div class="mb-4">
+                    <label for="description" class="label" ref="input">Name</label>
+                    <textarea type="text" class="input" id="description" v-model="form.description" rows="5" required></textarea>
                 </div>
 
                 <div class="mb-4">
@@ -209,6 +214,7 @@ export default {
         create(position) {
             this.form.position = position;
             this.form.name = null;
+            this.form.description = null;
             this.form.tone = 'light';
             this.showModal = true;
             this.$nextTick(() => this.$refs.input.focus());

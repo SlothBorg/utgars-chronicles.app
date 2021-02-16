@@ -13,6 +13,7 @@ class UpdatePeriodRequest extends FormRequest
         return [
             'type' => Rule::in([Type::LIGHT, Type::DARK]),
             'name' => 'required',
+            'description' => 'required',
         ];
     }
 }

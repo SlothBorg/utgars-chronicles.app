@@ -12,6 +12,7 @@ class CreatePeriodRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'description' => 'required',
             'type' => ['required', Rule::in(['light', 'dark'])],
             'position' => [
                 'required',

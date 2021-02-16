@@ -35,7 +35,9 @@
                     />
                 </div>
 
-                <h4 class="text-center">{{ event.name }}</h4>
+                <h4 class="text-center border-b-2 border-solid border-gray-900">{{ event.name }}</h4>
+
+                <p class="text-center">{{ event.description }}</p>
 
                 <div class="absolute invisible group-hover:visible flex justify-end items-center inset-x-0 bottom-0 px-2 pb-2">
                     <button class="text-sm text-indigo-700" @click="createScene">Create Scene</button>
@@ -58,7 +60,12 @@
             <form v-else @submit.prevent="submit">
                 <div class="mb-4">
                     <label for="name" class="label">Name</label>
-                    <textarea id="name" rows="4" class="input" v-model="form.name"></textarea>
+                    <input type="text" id="name" class="input" v-model="form.name">
+                </div>
+
+                <div class="mb-4">
+                    <label for="name" class="label">Description</label>
+                    <textarea id="description" rows="4" class="input" v-model="form.description"></textarea>
                 </div>
 
                 <div class="mb-4">
@@ -135,6 +142,7 @@ export default {
             form: {
                 type: this.event.type,
                 name: this.event.name,
+                description: this.event.description,
             },
         };
     },
@@ -157,6 +165,7 @@ export default {
             if (
                 this.form.type === this.event.type
                 && this.form.name === this.event.name
+                && this.form.description === this.event.description
             ) {
                 this.editing = false;
                 return;
@@ -189,12 +198,14 @@ export default {
         edit() {
             this.form.type = this.event.type;
             this.form.name = this.event.name;
+            this.form.description= this.event.description;
             this.editing = true;
         },
 
         cancel() {
             this.form.type = this.event.type;
             this.form.name= this.event.name;
+            this.form.description= this.event.description;
             this.editing = false;
         },
 

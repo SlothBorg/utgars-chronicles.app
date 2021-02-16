@@ -56,9 +56,11 @@
                         />
                     </div>
 
-                    <h3 class="font-bold tracking-wide text-center py-2">
+                    <h3 class="font-bold tracking-wide text-center py-2 border-b-2 border-solid border-gray-900">
                         {{ period.name }}
                     </h3>
+
+                    <p class="tracking-wide text-center">{{ period.description }}</p>
 
                     <div
                         class="rounded-full w-6 h-6 border-2 border-gray-800 absolute"
@@ -93,12 +95,12 @@
                 <form v-else @submit.prevent="submit">
                     <div class="mb-4">
                         <label for="name" class="label">Name</label>
-                        <textarea
-                            type="text"
-                            id="name"
-                            v-model="form.name"
-                            class="input"
-                        ></textarea>
+                        <input type="text" id="name" v-model="form.name" class="input">
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="description" class="label">Description</label>
+                        <textarea type="text" id="description" v-model="form.description" class="input"></textarea>
                     </div>
 
                     <div class="mb-4">
@@ -210,6 +212,7 @@ export default {
             newEventPosition: this.nextEventPosition,
             form: {
                 name: this.period.name,
+                description: this.period.description,
                 type: this.period.type
             }
         };
@@ -231,19 +234,22 @@ export default {
         edit() {
             this.editing = true;
             this.form.name = this.period.name;
+            this.form.description = this.period.description;
             this.form.type = this.period.type;
         },
 
         cancel() {
             this.editing = false;
             this.form.name = this.period.name;
+            this.form.description = this.period.description;
             this.form.type = this.period.type;
         },
 
         submit() {
             if (
-                this.form.name === this.period.name &&
-                this.form.type === this.period.type
+                this.form.name === this.period.name
+                && this.form.description === this.period.description
+                && this.form.type === this.period.type
             ) {
                 this.editing = false;
                 return;

@@ -12,6 +12,7 @@ class UpdateEventRequest extends FormRequest
     {
         return [
             'name' => 'required',
+            'description' => 'required',
             'type' => ['required', Rule::in([Type::DARK, Type::LIGHT])],
         ];
     }

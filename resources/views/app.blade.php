@@ -14,7 +14,7 @@
 
     @routes
 </head>
-<body class="h-auto page-header">
+<body class="h-auto">
     <div class="flex flex-col">
         @inertia
     </div>
