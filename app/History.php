@@ -121,10 +121,12 @@ class History extends Model
         ]);
     }
 
-    public function addLegacy(string $name): Legacy
+    public function addLegacy(string $name, string $type, string $description): Legacy
     {
         return $this->legacies()->create([
             'name' => $name,
+            'type' => $type,
+            'description' => $description,
         ]);
     }
 }

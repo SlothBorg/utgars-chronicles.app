@@ -65,7 +65,7 @@
 
                 <div class="mb-4">
                     <label for="name" class="label">Description</label>
-                    <textarea id="description" rows="4" class="input" v-model="form.description"></textarea>
+                    <textarea id="description" rows="4" class="input" v-model="form.description" required></textarea>
                 </div>
 
                 <div class="mb-4">

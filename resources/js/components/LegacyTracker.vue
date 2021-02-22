@@ -8,6 +8,26 @@
                     <small v-if="errors.name" class="text-xs text-red-500 mt-1">{{ errors.name[0] }}</small>
                 </div>
 
+                <div :class="{ error: errors.type }" class="mb-4">
+                    <label for="type" class="label">Type</label>
+                    <select class="input" id="type" ref="input" v-model="form.type" required>
+                        <option value="Event">Event</option>
+                        <option value="Idea">Idea</option>
+                        <option value="Person">Person</option>
+                        <option value="Place">Place</option>
+                        <option value="Thing">Thing</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <small v-if="errors.type" class="text-xs text-red-500 mt-1">{{ errors.type[0] }}</small>
+                </div>
+
+                <div :class="{ error: errors.description }" class="mb-4">
+                    <label for="description" class="label">Description</label>
+                    <textarea id="description" rows="4" class="input" v-model="form.description" required></textarea>
+                    <small v-if="errors.description" class="text-xs text-red-500 mt-1">{{ errors.description[0] }}</small>
+
+                </div>
+
                 <button
                     type="submit"
                     class="text-white w-full rounded py-2 px-4"
@@ -30,7 +50,8 @@
         </div>
 
         <div v-for="legacy in internalLegacies" :key="legacy.id" class="mb-2 text-sm px-2 py-2 bg-white cursor-pointer shadow rounded" @click="edit(legacy)">
-            {{ legacy.name }}
+            <h4 class="font-bold tracking-wide text-center">{{ legacy.name }} (<span class="font-normal italic">{{ legacy.type }}</span>)</h4>
+            <p>{{ legacy.description }}</p>
         </div>
     </div>
 </template>
@@ -83,6 +104,8 @@ export default {
         reset() {
             this.form.id = null;
             this.form.name = null;
+            this.form.type = null;
+            this.form.description = null;
         },
 
         create() {

@@ -12,7 +12,7 @@ class CreateLegacyController extends Controller
 {
     public function __invoke(CreateLegacyRequest $request, History $history): JsonResponse
     {
-        $legacy = $history->addLegacy($request->get('name'));
+        $legacy = $history->addLegacy($request->get('name'), $request->get('type'), $request->get('description'));
 
         broadcast(new LegacyCreated($legacy));
 

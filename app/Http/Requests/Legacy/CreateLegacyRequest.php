@@ -10,6 +10,8 @@ class CreateLegacyRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'in:Event,Idea,Person,Place,Thing,Other'],
+            'description' => ['required', 'string'],
         ];
     }
 }

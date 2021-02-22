@@ -28,6 +28,6 @@ class LegacyCreated implements ShouldBroadcastNow
 
     public function broadcastWith(): array
     {
-        return $this->legacy->only(['id', 'name']);
+        return $this->legacy->only(['id', 'name', 'type', 'description']);
     }
 }
